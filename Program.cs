@@ -27,10 +27,10 @@ namespace codenation
 
                 if (char_index >= 0 && char_index <= 26)
                 {
-                    var char_index_decifrado = char_index + numeroCasas + 97;
+                    var char_index_decifrado = char_index - numeroCasas + 97;
 
-                    if (char_index_decifrado > 122)
-                        char_index_decifrado -= 26;
+                    if (char_index_decifrado < 97)
+                        char_index_decifrado += 26;
 
                     char_decifrado = (char)char_index_decifrado;
                 }
@@ -51,6 +51,8 @@ namespace codenation
             }
 
             desafio.resumo_criptografico = resumo_criptografico.ToLower();
+
+            Console.WriteLine(JsonConvert.SerializeObject(desafio).ToString());
 
             // submit
             File.WriteAllText(path, JsonConvert.SerializeObject(desafio));
